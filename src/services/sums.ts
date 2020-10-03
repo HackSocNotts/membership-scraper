@@ -1,4 +1,4 @@
-import { addMemberIfChanged, getAllMembers } from '../services/members';
+import { addMemberIfNew, getAllMembers } from '../services/members';
 import { addMember as addMemberToStore } from '../store/members';
 import { beat } from './heartbeat';
 import fetch from 'node-fetch';
@@ -49,7 +49,7 @@ export const sync = async (start = false): Promise<void> => {
       }),
     );
 
-    members.forEach((member) => addMemberIfChanged(member as Member));
+    members.forEach((member) => addMemberIfNew(member as Member));
     console.log('Found', members.length, 'members.');
     if (members.length > 0) {
       await beat();
