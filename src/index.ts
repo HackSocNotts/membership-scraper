@@ -1,11 +1,5 @@
-/**
- * Returns string saying hello to `name`
- *
- * @param name who to say hello to
- * @returns string saying hello to `name`
- */
-export function hello(name: string): string {
-  return `hello ${name}`;
-}
+import './configEnv';
+import { sync } from './services/sums';
 
-console.log(hello('world'));
+sync(true);
+setInterval(sync, 5 * 60 * 1000);
