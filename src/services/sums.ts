@@ -1,5 +1,6 @@
 import { addMemberIfChanged, getAllMembers } from '../services/members';
 import { addMember as addMemberToStore } from '../store/members';
+import { beat } from './heartbeat';
 import fetch from 'node-fetch';
 import { JSDOM } from 'jsdom';
 import { Member } from '../types/Member';
@@ -29,7 +30,6 @@ export const sync = async (start = false): Promise<void> => {
         Cookie: `su_session=${su_session};`,
       },
     }).then((res) => {
-      console.log(res.headers.get('set-cookie'));
       const newSuSession = getCookie(res.headers.get('set-cookie') as string);
       if (newSuSession[0]) {
         su_session = newSuSession[0];
@@ -51,6 +51,9 @@ export const sync = async (start = false): Promise<void> => {
 
     members.forEach((member) => addMemberIfChanged(member as Member));
     console.log('Found', members.length, 'members.');
+    if (members.length > 0) {
+      await beat();
+    }
   } catch (e) {
     throw e;
   }
