@@ -1,4 +1,4 @@
-import { addMember as addMemberToStore, updateMember as updateMemberToStore } from '../store/members';
+import { addMember as addMemberToStore } from '../store/members';
 import client from './db';
 import { gql } from 'graphql-request';
 import { Member } from '../types/Member';
