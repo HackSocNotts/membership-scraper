@@ -63,7 +63,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "graphql-request": "^3.0.0",
-    "jsdom": "^16.4.0",
+    "jsdom": "^16.5.0",
     "node-fetch": "^2.6.1"
   }
 }
